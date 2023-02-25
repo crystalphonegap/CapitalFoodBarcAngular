@@ -1,0 +1,193 @@
+<div class="p-2">
+    <div class="head-top card card-custom">
+        <div class="head-tittle-bar">
+
+            <div class="row flex-wrap pb-0">
+                <div class="col-7 p-3">
+                    <h3 class="card-label">Barcode Scan</h3>
+                </div>
+                <div class="col-4" style=" margin-top: 7px;">
+                    <button (click)="History()" class="btn btn-sm text-white btn-primary"><i class="fa fa-history "></i>
+                        History </button>
+                </div>
+            </div>
+        </div>
+        <hr class="hr-col">
+        <div class="row">
+            <div class="m-1 col-md-4">
+                <b>PartyName:</b> <label class="pl-2">{{PartyName}}</label>
+            </div>
+            <div class="m-1 col-5 col-md-4">
+                <b> DC:</b><label class="pl-2">{{DC}}</label>
+
+            </div>
+            <div class="m-1 col-5 col-md-3">
+                <b>Date:</b> <label id="{{'input'+2}}" class="pl-2">{{Date | date :'dd/MM/yyyy'}}</label>
+
+            </div>
+
+        </div>
+        <!-- <div class="row det-bg-top">
+            <div class="m-1 col-md-3">
+                <b>Item Code: </b><label class="pl-2">{{ItemCode}}</label>
+            </div>
+            <div class="m-1 col-md-4">
+                <b>Product Description:</b> <label class="pl-2">{{ProductDescription}}</label>
+            </div>
+            <div class="m-1 col-md-2">
+                <b>Balance Quantity:</b><label class="pl-2">{{ BalanceQuantity}}</label>
+            </div>
+            <div class="m-1 col-md-2">
+                <b>Scanned Count:</b> <label class="pl-2">{{ScannedCount}}</label>
+            </div>
+
+        </div> -->
+    </div>
+
+
+    <div class="  bg-secondary pt-2 pb-2 ">
+
+
+        <div>
+            <!-- <ngx-barcode-scanner [(value)]="value" [codes]="['code_128', 'ean', 'upc', 'upc_e', 'ean_8']" [errorThreshold]="0.1" (exception)="onError($event)"></ngx-barcode-scanner> -->
+
+
+            <div class="barcode-scanner-container ">
+
+                <!-- <barcode-scanner-livestream-overlay
+                [type]="['code_128', 'code_39', 'ean_8', 'ean', 'upc', 'upc_e', 'ean_8']"
+                (valueChanges)="onValueChanges($event)"
+                (started)="onStarted($event)"
+                ></barcode-scanner-livestream-overlay> -->
+            </div>
+            <div class="row  p-3">
+                <div class="col-12">
+                    <div class="row ml-1 mb-2">
+                        Auto Barcode Entry
+                        <mat-slide-toggle class="ml-2" [(ngModel)]="AutoBarcodeEntery"></mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="col-12  ">
+                    Enter Barcode Below
+                </div>
+                <div class="col-12" style="float: left;">
+                    <!-- <input class="form-control  " autocomplete="off" (keyup.enter)="ValueChanged($event.target.value,i)" id="{{'input'+i}}" class="form-control " (change)="ValueChanged($event.target.value,i)" [(ngModel)]="Emp.Barcode"> -->
+                    <input class="  m-3" (input)="OnInput($event.target.value)" class="form-control  " autocomplete="off" id="{{'input'+1}}" class="form-control " [(ngModel)]="barcodeValue">
+                </div>
+                
+                <div  *ngIf="AutoScanForSameIte"  class="col-12 mt-4">
+                    <button type="button" class="btn btn-sm btn-primary  m-2  row " matTooltip="Save" (click)="InsertBarCodeByItem()">
+                        <i class="fa   fa-save"></i> Save 
+                    </button>
+                </div>
+                <div  *ngIf="AutoScanForSameIte"  class="col-12 p-8">
+                    <button type="button" class="btn btn-sm btn-primary   row " matTooltip="Save" (click)="StopAutoScanForSameItem()">
+                        <i class="fa  fa-stop"></i> STOP AUTO SCANNING FOR <br/> "{{this.Tempitem.ItemCode+'-'+this.Tempitem.Description}}"
+                    </button>
+                </div>
+                <div *ngIf="EnableItemSelection" class="col-12 mt-4" style="float: left;">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Select Item</mat-label>
+                        <input type="text" placeholder="Select Item" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.ItemCode+'-'+option.Description">
+                                {{option.ItemCode}}-{{option.Description}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="EnableItemSelection==false && AutoScanForSameIte==false" class="col-3 ml-4 mt-3">
+                    <button type="button" class="btn btn-sm btn-primary   row " matTooltip="Save" (click)="OnEnterChanged(this.barcodeValue)">
+                        <i class="fa   fa-save"></i> Save
+                    </button>
+                </div>
+
+                <div *ngIf="EnableItemSelection && AutoScanForSameIte==false" class=" ml-4 mt-3">
+                    <button type="button" class="btn btn-sm btn-primary  m-2  row " matTooltip="Save" (click)="InsertBarCodeByItem()">
+                        <i class="fa   fa-save"></i> Save 
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary    m-2   row " matTooltip="Save" (click)="StartAutoScanAndInsertBarcode()">
+                        <i class="fa   fa-save"></i>Save and start auto scan for this Item
+                    </button>
+                </div>
+
+                <div class="col-12 mt-2">
+                    last Message : <label style="color: red;"> {{Message}}</label>
+                </div>
+                <!-- <button type="button" class="btn btn-sm col-1" matTooltip="Scan codebar with overlay window" (click)="BarCodestart()">
+                           
+                            <i class="fa   fa-barcode"></i>
+                        </button> -->
+
+                <!-- <button class="btn btn-sm col-1" matTooltip="Delete" (click)="Delete()">
+                            <mat-icon>delete_forever</mat-icon>
+                        </button>                       -->
+            </div>
+        </div>
+    </div>
+    <div style="background: #efefef36;">
+        <h4 class="m-2 mr-4 p-2 head-tittle-bar">
+            Item Detail</h4>
+    </div>
+
+
+
+    <div *ngFor="let Party of DataList; index as i" class="open-details col-md-3 col-11 m-3 p-3" [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'">
+        <div class="row ml-3">
+            <div class="col-12 pl-3 pr-3 pt-2"><b>Item:</b> {{ Party?.ItemCode }} - {{ Party?.Description }}</div>
+            <!-- <div class="col-md-4 pl-3 pr-3 pt-2"><b>OutWard Quantity :</b> {{ Party?.outwpard }}</div> -->
+            <div class="col-5 pl-3 pr-3 pt-2"><b>Product Qty :</b> {{ Party?.inwoard }}</div>
+            <div class="col-5 pl-3 pr-3 pt-2"><b>Balance Qty :</b>{{ Party?.BALQTY }}</div>
+            <div class="col-12 pl-3 pr-3 pt-1"><b>Scannned Barcode</b>
+                <button class="btn pt-3 btn-sm" matTooltip="Scannned Barcode" (click)="Edit(Party?.ItemCode,Party?.Description,Party?.BALQTY,Party?.inwoard  )">
+                     <mat-icon>visibility</mat-icon></button></div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- 
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                    <th class="font-weight-bold align-text-top" scope="col ">Product List</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Party of DataList; index as i">
+                    <th  [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'" scope="row" style="width: 56px;">
+                        <div *ngIf="Party.visible!=1"> <button class="btn btn-brand btn-icon btn-sm btn-bold" matTooltip="View" (click)="ChangeVisiblety(i,true)"><mat-icon>library_add</mat-icon></button></div>
+                        <div *ngIf="Party.visible==1"> <button class="btn btn-sm" matTooltip="close" (click)="ChangeVisiblety(i,false)"><mat-icon>cancel</mat-icon></button></div>
+
+                    </th>
+
+                    <th  >
+                        <h5>{{ Party?.ItemCode }}</h5>
+                        <div class="row open-details ml-1 mr-2" *ngIf="Party.visible==1">
+                            <div class="col-md-4 p-3"><b>ItemCode:</b>{{ Party?.ItemCode }}</div>
+                            <div class="col-md-4 p-3"><b>Product Description :</b> {{ Party?.Description }}</div>
+                            <div class="col-md-4 p-3"><b>Product Quantity :</b> {{ Party?.inwoard }}</div>
+                            <div class="col-md-4 p-3"><b>Balance Quantity :</b>{{ Party?.BALQTY }}</div>
+                            <div class="col-md-4 "><b>Scannned Barcode</b><button class="btn btn-sm" matTooltip="Scannned Barcode" (click)="Edit(Party?.ItemCode,Party?.Description,Party?.BALQTY,Party?.inwoard  )">
+                                 <mat-icon>visibility</mat-icon></button></div>
+                        </div>
+
+
+                    </th>
+                </tr>
+
+            </tbody>
+        </table> -->
+
+
+
+
+</div>
+<div class="row m-4  row pb-5">
+    <button (click)="Back()" class="btn btn-sm btn-primary">Back </button>
+</div>

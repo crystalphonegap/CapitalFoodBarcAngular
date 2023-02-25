@@ -1,0 +1,147 @@
+<div class="m-6">
+
+    <form [formGroup]="SearchFilter">
+   
+   
+    <div class="head-tittle-bar " style="background-color: #000;">
+        <div class="row flex-wrap pt-6 pb-0">
+            <div class="col-md-4">
+                <div class="p-5">
+                    <h3 class="card-label" style="color:white">IQC Pending List</h3>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field class="example-full-width col-12"  style="background-color: white;">
+                    <mat-label>From Date</mat-label>
+                    <input matInput autocomplete="off" 
+                        formControlName="FromDate" [matDatepicker]="picker" >
+                    <mat-datepicker-toggle matSuffix [for]="picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+
+            </div>
+            <div class="col-md-2">
+                <!-- appearance="fill"  -->
+                <mat-form-field class="example-full-width col-12" style="background-color: white;">
+                    <mat-label>To Date</mat-label>
+                    <input matInput autocomplete="off" 
+                        formControlName="ToDate" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            
+
+            <div class="col-md-3">
+                <a (click)="GetData()" class="btn btn-light-primary   font-weight-bold">Get Data</a>
+            </div>
+            <div class="col-md-1">
+                <!-- <a [routerLink]="'/IQC/DocumentDetails'" routerLinkActive="active "><button type="button "
+                        class="btn btn-primary mr-3" (click)="Add()">
+                        <mat-icon>note_add</mat-icon>
+                    </button></a> -->
+
+            </div>
+        </div>
+    </div>
+</form>
+
+    <div class="card card-custom">
+
+        <div class="card-body" style="box-shadow: 4px 7px 10px 5px #00000021;">
+           
+            <div >
+                <div class="table table-responsive" style="background: #efefef36;">
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Item Code</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Item Name</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Party Code</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Party Name</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Doc Entry</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">GRN N0. </th>
+                                <th class="font-weight-bold align-text-top" scope="col ">GRN Date </th>
+                                <th class="font-weight-bold align-text-top" scope="col ">IQC Qty </th>
+                                <th class="font-weight-bold align-text-top" scope="col ">IQC Complete Qty </th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mt-2" *ngFor="let Party of DataList; index as i">
+
+                               <th>{{Party?.RowNum}}</th>
+                               <th>{{Party?.U_ItemCode}}</th>
+                               <th>{{Party?.U_ItemName}}</th>
+                               <th>{{Party?.U_CardCode}}</th>
+                               <th>{{Party?.U_CardName}}</th>
+
+                               <th>{{Party?.U_GRNDocEntry}}</th>
+                               <th>{{Party?.U_GRNNumber}}</th>
+                               <th>{{Party?.U_GRNDate}}</th>
+                               <th>{{Party?.U_IQCQTY}}</th>
+                               <th>{{Party?.U_ComplQty}}</th>
+                               <th>
+                                <a (click)="Edit(Party?.DocEntry)" class="btn btn-brand mr-2 btn-sm bot-sm"><mat-icon>edit</mat-icon></a>  
+                               </th>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <h4 *ngIf="this.DataList[0] == null">No Data Available</h4>
+
+        <div *ngIf="DataList[0] !=null" style="text-align: center" class="row">
+            <div class="col-10 d-flex flex-wrap py-2 ml-4 mr-3">
+                <ul class="pagination justify-content-center">
+                    <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                        <a (click)="showPrevData()" [ngClass]="
+              paginationService.showNoOfCurrentPage == 1
+                ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1 active'
+            " style="
+              margin-top: 5px;
+              margin-right: 10px !important;
+              cursor: pointer;
+            ">Prev</a>
+                    </li>
+                    <li *ngFor="let page of pageField; let i = index" class="page-item">
+                        <a (click)="showDataByPageNumber(page, i)" [ngClass]="
+              pageNumber[i]
+                ? 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1 active'
+                : 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1'
+            " style="margin-right: 5px; margin-top: 5px; cursor: pointer">{{ page }}</a>
+                    </li>
+                    <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                        <a (click)="showNextData()" [ngClass]="
+              paginationService.disabledNextBtn
+                ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1'
+            " style="
+              margin-top: 5px;
+              margin-left: 10px !important;
+              cursor: pointer;
+            ">Next</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col py-4 text-align-left">
+                Page {{ currentPage }} of {{ paginationService.exactPageList }}
+            </div>
+            <!--end: Datatable-->
+        </div>
+            </div>
+
+       
+
+        </div>
+    </div>
+</div>

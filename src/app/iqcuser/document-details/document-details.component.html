@@ -1,0 +1,91 @@
+<div class="col-md-12">
+    <div class="head-top card card-custom">
+        <div class="row" style="background-color: #000;">
+            <div class="col-md-3" style="padding: 10px;"><h1 style="color: white;">IQC Document</h1></div>
+            <div class="col-md-6" style="padding: 10px;">
+              
+                  
+                     <input  class="form-control" [(ngModel)]="DocNum" placeholder="Document Number" />
+                    </div>
+                    <div class="col-md-3" style="padding: 10px;">
+                     <button type="button " class="btn btn-sm btn-primary mr-3" (click)="Search()"> <mat-icon>search</mat-icon>
+                    </button>    
+                </div>
+            
+        </div>
+        <div class="col-md-12">
+        <br/>
+        <div class="row" *ngFor="let list of DataList">
+
+            <div class="col-md-6 form-control">
+                <b>GRN No:</b> <label class="pl-2">{{list?.U_GRNNumber}}</label>
+            </div>
+            <div class="col-md-6 form-control">
+                <b>GRN Date:</b><label class="pl-2">{{list?.U_GRNDate}}</label>
+            </div> 
+            <div class="col-md-6 form-control">
+                <b>Card Code:</b> <label class="pl-2">{{list?.U_CardCode}}</label>
+            </div>
+            <div class="col-md-6 form-control">
+                <b>Card Name:</b><label class="pl-2">{{list?.U_CardName}}</label>
+            </div> 
+
+            <div class="col-md-6 form-control">
+                <b>Item Code:</b> <label class="pl-2">{{list?.U_ItemCode}}</label>
+            </div>
+            <div class="col-md-6 form-control">
+                <b>Item Name:</b><label class="pl-2">{{list?.U_ItemName}}</label>
+            </div> 
+
+            <div class="col-md-6 form-control">
+                <b>IQC QTY:</b> <label class="pl-2">{{list?.U_IQCQTY}}</label>
+            </div>
+            <div class="col-md-6 form-control">
+                <b>Completed QTY:</b><label class="pl-2">{{list?.U_ComplQty}}</label>
+            </div> 
+            <div class="col-md-12 form-control">
+                <b>Remark:</b> <label class="pl-2">{{list?.Remark}}</label>
+            </div> 
+      
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-md-8"> 
+            <label><b>Scan Barcode:</b></label>
+            <input class="m-3" (input)="OnInput($event.target.value)" class="form-control  " autocomplete="off" id="barcodeValue" class="form-control " placeholder="Scan Barcode" [(ngModel)]="barcodeValue">
+            </div>
+            <div class="col-md-4"> 
+                <br/>
+                <button (click)="Back()" class="btn mr-3 ml-3 btn-sm btn-primary">Cancel</button> 
+        </div>
+        </div>
+        </div>
+<br/>
+<br/>
+        <div class="table table-responsive" style="background: #efefef36;">
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                        <th class="font-weight-bold align-text-top" scope="col ">Barcode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="mt-2" *ngFor="let Scanbarcode of ScanDataList; index as i">
+
+                       <th>{{Scanbarcode?.RowNum}}</th>
+                       <th>{{Scanbarcode?.U_SerialNumber}}</th>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
+    </div>
+
+
+   
+</div>

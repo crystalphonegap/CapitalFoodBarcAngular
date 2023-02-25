@@ -1,0 +1,6 @@
+<p>demo works!</p>
+<div class="form-group m-3" *ngFor="let Emp of TestData ; index as i ">   
+    <input class="form-control form-control-sm"  (keyup.enter)="ValueChanged($event.target.value,i)"      id="{{'input'+i}}" class="form-control " 
+    [ngModel]="Emp?.QRCode"
+       [ngModel]="Emp?.QRCode">
+</div>

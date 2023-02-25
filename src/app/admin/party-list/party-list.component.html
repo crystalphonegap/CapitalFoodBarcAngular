@@ -1,0 +1,128 @@
+<div class="m-6">
+    <div class="head-tittle-bar" style="background-color: #000;">
+        <div class="row flex-wrap pt-6 pb-0">
+            <div class="col-8">
+                <h3 class="card-label">Dispatch List</h3>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="card card-custom">
+
+        <div class="card-body">
+            <form [formGroup]="SearchFilter">
+                <!--begin: Search Form-->
+                <!--begin::Search Form-->
+                <div class="row ">
+                    <div class="m-2 ml-4">
+                        <mat-form-field appearance="fill">
+                            <mat-label>From Date</mat-label>
+                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')" formControlName="FromDate" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="m-2">
+                        <mat-form-field appearance="fill">
+                            <mat-label>To Date</mat-label>
+                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')" formControlName="ToDate" [matDatepicker]="picker1">
+                            <mat-datepicker-toggle matSuffix [for]="picker1">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+
+
+                    <div class="col-md-3 p-2">
+                        <a (click)="ChangeFilter()" class="btn btn-light-primary   font-weight-bold">Get Data</a>
+                    </div>
+                </div>
+                <!--end::Search Form-->
+                <!--end: Search Form-->
+                <!--begin: Datatable-->
+            </form>
+            <div class="table table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Approve</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Party Name</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">DC</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Date</th>
+                            <th class=" font-weight-bold align-text-top " scope="col " style="width: 106px;" colspan="2">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Party of DataList; index as i">
+                            <th scope="row" style="width: 56px;">{{ i + 1 }}</th>
+                            <th><mat-checkbox [(ngModel)] ="Party.Approved"></mat-checkbox> </th>
+                            <th>{{ Party?.Customer }}</th>
+                            <th>{{ Party?.DcSeries }}</th>
+                            <th>{{ Party?.DcDate }}</th>
+                            <th style="width: 106px;">
+                                <div class="row">
+                                    <button class="btn btn-sm" matTooltip="View" (click)="Edit(Party.Party_id, Party?.Customer,Party?.DcSeries ,Party?.DcDate )">
+                                    <mat-icon>visibility</mat-icon>
+                                </button>
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <h4 *ngIf="this.DataList[0] == null">No Data Available</h4>
+             
+            <!-- <div *ngIf="DataList[0] !=null" style="text-align: center" class="row">
+                <div class="col-10 d-flex flex-wrap py-2 ml-4 mr-3">
+                    <ul class="pagination justify-content-center">
+                        <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                            <a (click)="showPrevData()" [ngClass]="
+                  paginationService.showNoOfCurrentPage == 1
+                    ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1 active'
+                " style="
+                  margin-top: 5px;
+                  margin-right: 10px !important;
+                  cursor: pointer;
+                ">Prev</a>
+                        </li>
+                        <li *ngFor="let page of pageField; let i = index" class="page-item">
+                            <a (click)="showDataByPageNumber(page, i)" [ngClass]="
+                  pageNumber[i]
+                    ? 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1 active'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1'
+                " style="margin-right: 5px; margin-top: 5px; cursor: pointer">{{ page }}</a>
+                        </li>
+                        <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                            <a (click)="showNextData()" [ngClass]="
+                  paginationService.disabledNextBtn
+                    ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1'
+                " style="
+                  margin-top: 5px;
+                  margin-left: 10px !important;
+                  cursor: pointer;
+                ">Next</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col py-4 text-align-left">
+                    Page {{ currentPage }} of {{ paginationService.exactPageList }}
+                </div> 
+            </div> -->
+
+        </div>
+    </div>
+    
+    <div class="m-4 pb-5">
+        <!-- <button (click)="Send()" class="btn btn-sm btn-primary">Send  </button> -->
+    </div>
+</div>

@@ -1,0 +1,119 @@
+<div class="m-6">
+
+    <div class="head-tittle-bar">
+
+        <div class="row flex-wrap pt-1 pb-0">
+            <div class="col-12 p-5" style="background-color: #000;">
+                <h3 class="card-label" style="color: #fff;">Product List</h3>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="card card-custom">
+        <!-- <div class="container">
+            <div class="row card-header flex-wrap  pb-0">
+                <div class=" card-title">
+                    <h3 class="card-label">Product List</h3>
+                </div>
+
+            </div>
+        </div> -->
+        <div class="card-body" style="box-shadow: 4px 7px 10px 5px #00000021;">
+
+            <div class="head-tittle-bar">
+                <!-- <div class="row flex-wrap pb-0">
+                    <div class="col-8">
+                        <h3 class="card-label">Product List
+                        </h3>
+                    </div>
+
+                </div> -->
+
+                <div class="head-top card card-custom">
+                    <div class="row">
+                        <div class="m-1 col-md-4">
+                            <b>PartyName:</b> <label class="pl-2">{{PartyName}}</label>
+                        </div>
+                        <div class="m-1 col-md-4">
+                            <b> DC:</b><label class="pl-2">{{DC}}</label>
+
+                        </div>
+                        <div class="m-1 col-md-3">
+                            <b>Date:</b> <label class="pl-2">{{Date  | date :'dd/MM/yyyy'}}</label>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #efefef36;">
+                <h4 class="m-2 mr-4 p-2 head-tittle-bar">
+                    Item Detail</h4>
+            </div>
+        
+        
+        
+            <div *ngFor="let Party of DataList; index as i" class="open-details col-md-3 col-11 m-3 p-3" [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'">
+                <div class="row ml-3">
+                    <div class="col-12 pl-3 pr-3 pt-2"><b>Item:</b> {{ Party?.ItemCode }} - {{ Party?.Description }}</div>
+                    <!-- <div class="col-md-4 pl-3 pr-3 pt-2"><b>OutWard Quantity :</b> {{ Party?.outwpard }}</div> -->
+                    <div class="col-5 pl-3 pr-3 pt-2"><small> <b> Product Qty :</b> {{ Party?.inwoard }}</small></div>
+                    <div class="col-5 pl-3 pr-3 pt-2"><small><b>Balance Qty :</b>{{ Party?.BALQTY }}</small> </div>
+                    <div class="col-12 pl-3 pr-3 pt-1"><b>Scannned Barcode</b>
+                        <button class="btn pt-3 btn-sm" matTooltip="Scannned Barcode" (click)="Edit(Party?.ItemCode,Party?.Description,Party?.BALQTY,Party?.inwoard  )">
+                             <mat-icon>visibility</mat-icon></button></div>
+                </div>
+        
+            </div>
+        
+            <!-- <div class="table table-responsive" style="background: #efefef36;">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Product List</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Party of DataList; index as i">
+                            <th  [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'" scope="row" style="width: 56px;">
+                                <div *ngIf="Party.visible!=1"> <button class="btn btn-brand btn-icon btn-sm btn-bold" matTooltip="View" (click)="ChangeVisiblety(i,true)"><mat-icon>library_add</mat-icon></button></div>
+                                <div *ngIf="Party.visible==1"> <button class="btn btn-sm" matTooltip="close" (click)="ChangeVisiblety(i,false)"><mat-icon>cancel</mat-icon></button></div>
+
+                            </th>
+
+                            <th  >
+                                <!-- <th [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'"> 
+                                <h5>{{ Party?.ItemCode }}</h5>
+                                <div class="row open-details ml-1 mr-2" *ngIf="Party.visible==1">
+                                    <div class="col-md-4 p-3"><b>ItemCode:</b>{{ Party?.ItemCode }}</div>
+                                    <div class="col-md-4 p-3"><b>Product Description :</b> {{ Party?.Description }}</div>
+                                    <!-- <div class="col-md-4 p-3"><b>OutWard Quantity :</b> {{ Party?.outwpard }}</div> 
+                                    <div class="col-md-4 p-3"><b>Product Quantity :</b> {{ Party?.inwoard }}</div>
+                                    <div class="col-md-4 p-3"><b>Balance Quantity :</b>{{ Party?.BALQTY }}</div>
+                                    <div class="col-md-4 "><b>Scannned Barcode</b><button class="btn btn-sm" matTooltip="Scannned Barcode" (click)="Edit(Party?.ItemCode,Party?.Description,Party?.BALQTY,Party?.inwoard  )">
+                                         <mat-icon>visibility</mat-icon></button></div>
+                                </div>
+
+
+                            </th>
+                          
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div> -->
+            <h4 *ngIf="this.DataList[0] == null">No Data Available</h4>
+
+        </div>
+        <div class="p-3"><button (click)="Back()" class="btn btn-sm btn-primary">Back </button></div>
+    </div>
+
+
+</div>

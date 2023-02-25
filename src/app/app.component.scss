@@ -1,0 +1,74 @@
+:host {
+    height: 100%;
+    margin: 0;
+}
+
+.material-icons {
+    color: #fff;
+}
+
+.hedingtitilec {
+    padding: 7px !important;
+    color: #000;
+    font-family: Georgia, serif;
+    font-weight: 800;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.spinner_img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-content: center;
+}
+
+.hedingtitilec {
+    padding: 2px;
+}
+
+.spinner_overlay {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background-color: #1a375d;
+    z-index: 1000;
+    stroke: #5d78ff;
+    stroke-linecap: round;
+}
+
+th,
+td {
+    padding: 5px !important;
+    vertical-align: middle !important;
+}
+
+.btn.btn-light:hover:not(.btn-text):not(:disabled):not(.disabled),
+.btn.btn-light:focus:not(.btn-text),
+.btn.btn-light.focus:not(.btn-text) {
+    color: #fbfdff;
+    background-color: #3699ff;
+}
+
+.mat-autocomplete-panel {
+    min-width: 250px !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0.25em;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #dbdbdb3d !important;
+}
+
+.form-group {
+    margin-bottom: 0;
+}

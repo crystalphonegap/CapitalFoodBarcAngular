@@ -1,0 +1,118 @@
+<div class="m-6">
+
+    <div class="head-top card card-custom">
+        <div class="row">
+            <div class="m-1 col-md-4">
+                <b>PartyName:</b> <label class="pl-2">{{PartyName}}</label>
+            </div>
+            <div class="m-1 col-md-4">
+                <b> DC:</b><label class="pl-2">{{DC}}</label>
+
+            </div>
+            <div class="m-1 col-md-3">
+                <b>Date:</b> <label class="pl-2">{{Date}}</label>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card card-custom">
+        <!-- <div class="container">
+            <div class="row card-header flex-wrap  pb-0">
+                <div class=" card-title">
+                    <h3 class="card-label">Product List</h3>
+                </div>
+
+            </div>
+        </div> -->
+        <div class="card-body">
+
+            <div class="head-tittle-bar">
+                <div class="row flex-wrap pb-0">
+                    <div class="col-8">
+                        <h3 class="card-label">Product List
+                        </h3>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="table table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">ItemCode</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Product Description</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Product Quantity</th>
+                            <th class="font-weight-bold align-text-top" scope="col ">Balance Quantity</th>
+                            <th class=" font-weight-bold align-text-top " scope="col " style="width: 106px;" colspan="2">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Party of DataList; index as i">
+                            <th scope="row" style="width: 56px;">{{ i + 1 }}</th>
+                            <th>{{ Party?.ItemCode }}</th>
+                            <th>{{ Party?.Description }}</th>
+                            <th>{{ Party?.inwoard }}</th>
+                            <th>{{ Party?.BALQTY }}</th>
+                            <th style="width: 106px;">
+                                <div class="row">
+                                    <button class="btn btn-sm" matTooltip="View" (click)="Edit(Party?.ItemCode,Party?.Product_Name,Party?.BalanceQuantity )">
+                                        <mat-icon>visibility</mat-icon>
+                                    </button>
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <h4 *ngIf="this.DataList[0] == null">No Data Available</h4>
+            <!-- <div *ngIf="DataList[0] !=null" style="text-align: center" class="row">
+                <div class="col-10 d-flex flex-wrap py-2 ml-4 mr-3">
+                    <ul class="pagination justify-content-center">
+                        <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                            <a (click)="showPrevData()" [ngClass]="
+                  paginationService.showNoOfCurrentPage == 1
+                    ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1 active'
+                " style="
+                  margin-top: 5px;
+                  margin-right: 10px !important;
+                  cursor: pointer;
+                ">Prev</a>
+                        </li>
+                        <li *ngFor="let page of pageField; let i = index" class="page-item">
+                            <a (click)="showDataByPageNumber(page, i)" [ngClass]="
+                  pageNumber[i]
+                    ? 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1 active'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1'
+                " style="margin-right: 5px; margin-top: 5px; cursor: pointer">{{ page }}</a>
+                        </li>
+                        <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                            <a (click)="showNextData()" [ngClass]="
+                  paginationService.disabledNextBtn
+                    ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1'
+                " style="
+                  margin-top: 5px;
+                  margin-left: 10px !important;
+                  cursor: pointer;
+                ">Next</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col py-4 text-align-left">
+                    Page {{ currentPage }} of {{ paginationService.exactPageList }}
+                </div> 
+            </div> -->
+
+        </div>
+        <div class="p-3"><button (click)="Back()" class="btn btn-sm btn-primary">Back </button></div>
+    </div>
+
+
+</div>

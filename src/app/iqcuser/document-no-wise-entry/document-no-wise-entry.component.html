@@ -1,0 +1,128 @@
+<div class="p-2">
+    <div class="head-top card card-custom">
+
+        <h1>IQC Document</h1>
+        <hr class="hr-col">
+        <div class="row">
+            <div class="m-1 col-md-6">
+                <div class="row" >
+                    <div style="padding: 13px;"> <b>DocNum</b></div>
+                    <div> <input    class="form-control disabled " [(ngModel)]="DocNum" /></div>
+                    <div class="pl-1"> <button type="button " class="btn btn-sm btn-primary mr-3 "> <mat-icon>search</mat-icon>
+                    </button> </div>    
+                   
+                   
+                </div>
+            </div>
+            <div class="m-1 col-md-5">
+                <b>Status:</b> <label class="pl-2">{{Status}}</label>
+            </div> 
+        </div>
+        
+        <div class="row">
+            <div class="m-1 col-md-6">
+                <b>GRN No:</b> <label class="pl-2">{{GRNNo}}</label>
+            </div>
+            <div class="m-1 col-md-5">
+                <b>GRN Date:</b><label class="pl-2">{{GRNDate}}</label>
+            </div> 
+        </div>
+        
+        <div class="row">
+            <div class="m-1 col-md-6">
+                <b>Card Code:</b> <label class="pl-2">{{CardCode}}</label>
+            </div>
+            <div class="m-1 col-md-5">
+                <b>Card Name:</b><label class="pl-2">{{CardName}}</label>
+            </div> 
+        </div>
+        
+        <div class="row">
+            <div class="m-1 col-md-6">
+                <b>Item Code:</b> <label class="pl-2">{{ItemCode}}</label>
+            </div>
+            <div class="m-1 col-md-5">
+                <b>Item Name:</b><label class="pl-2">{{ItemName}}</label>
+            </div> 
+        </div>
+        
+        <div class="row">
+            <div class="m-1 col-md-6">
+                <b>IQC QTY:</b> <label class="pl-2">{{IQCQTY}}</label>
+            </div>
+            <div class="m-1 col-md-5">
+                <b>Completed QTY:</b><label class="pl-2">{{CompleteQTY}}</label>
+            </div> 
+        </div>
+        
+        <div class="row">
+            <div class="m-1 col-md-6">
+                <b>Remark:</b> <label class="pl-2">{{Remark}}</label>
+             
+            </div> 
+        </div>
+        
+    </div>
+    
+    <div class="card card-custom">
+        <!-- <div class="container">
+            <div class="row card-header flex-wrap  pb-0">
+                <div class=" card-title">
+                    <h3 class="card-label">Product List</h3>
+                </div>
+
+            </div>
+        </div> -->
+
+
+        <div class="head-tittle-bar " style="background-color: #000;">
+            <div class="row flex-wrap pt-6 pb-0">
+                <div class="col-md-11">
+                    <div class="p-4" style="color: #fff;">
+                        <h1 class="card-label">IQC List</h1>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    
+    
+        
+    <div class="card card-custom">
+
+        <div class="card-body" style="box-shadow: 4px 7px 10px 5px #00000021;">
+             
+                <div class="table table-responsive" style="background: #efefef36;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">Serial Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Party of DataList; index as i">
+                                <th scope="row" style="width: 56px;">{{ i + 1 }}</th>
+                                <th> 
+                                    <input    class="form-control disabled " [(ngModel)]="Party.Barcode" >
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <h4 *ngIf="this.DataList[0] == null">No Data Available</h4>
+             
+ 
+        </div>
+    </div>
+       
+    </div>
+
+
+<div class="row m-4 pb-5"> 
+        <button  class="btn btn-sm btn-primary">Ok</button> 
+        <button (click)="Back()" class="btn mr-3 ml-3 btn-sm btn-primary">Cancel</button> 
+</div>
+   
+</div>

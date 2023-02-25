@@ -1,0 +1,158 @@
+<div class="m-6">
+    <div class="head-tittle-bar " style="background-color: #000;">
+        <div class="row flex-wrap pt-6 pb-0">
+            <div class="col-md-11">
+                <div class="p-5">
+                    <h3 class="card-label">Dispatch List</h3>
+                </div>
+            </div>
+            <!-- <div class="col-md-1">
+                <a [routerLink]="'/User/DocumentNoWiseEntry'" routerLinkActive="active "><button type="button "
+                        class="btn btn-primary mr-3 ">
+                        <mat-icon>note_add</mat-icon>
+                    </button></a>
+
+            </div> -->
+        </div>
+    </div>
+
+
+    <div class="card card-custom">
+
+        <div class="card-body" style="box-shadow: 4px 7px 10px 5px #00000021;">
+            <form [formGroup]="SearchFilter">
+                <!--begin: Search Form-->
+                <!--begin::Search Form-->
+                <div class="row ">
+                    <div class="m-2 ml-4">
+                        <mat-form-field class="example-full-width col-12" appearance="fill">
+                            <mat-label>From Date</mat-label>
+                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                formControlName="FromDate" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="m-2">
+                        <mat-form-field class="example-full-width col-12" appearance="fill">
+                            <mat-label>To Date</mat-label>
+                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                formControlName="ToDate" [matDatepicker]="picker1">
+                            <mat-datepicker-toggle matSuffix [for]="picker1">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+                    <div class=" ">
+                        <mat-form-field class="example-full-width col-12" appearance="fill">
+                            <mat-label>Party Name</mat-label>
+                            <input [ngModelOptions]="{standalone: true}" matInput (input)="OnInput($event.target.value)"
+                                autocomplete="off" (keyup.enter)="SearchChanges()" placeholder="Party Name"
+                                [(ngModel)]="Keyword">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 p-2">
+                        <a (click)="SearchChanges()" class="btn btn-light-primary   font-weight-bold">Get Data</a>
+                    </div>
+                </div>
+                <!--end::Search Form-->
+                <!--end: Search Form-->
+                <!--begin: Datatable-->
+            </form>
+            <div *ngIf="ShowPartyList">
+                <div class="table table-responsive" style="background: #efefef36;">
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th class="font-weight-bold align-text-top" scope="col " style="width: 56px;">Sr No</th>
+                                <th class="font-weight-bold align-text-top" scope="col ">DC No/Party Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mt-2" *ngFor="let Party of DataList; index as i">
+
+                                <th [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'"
+                                    scope="row" style="width: 56px;">
+                                    <div *ngIf="Party.visible!=1"> <button
+                                            class="btn btn-brand btn-icon btn-sm btn-bold" matTooltip="View"
+                                            (click)="ChangeVisiblety(i,true)">
+                                            <mat-icon>library_add</mat-icon>
+                                        </button></div>
+                                    <div *ngIf="Party.visible==1"> <button class="btn btn-sm" matTooltip="close"
+                                            (click)="ChangeVisiblety(i,false)">
+                                            <mat-icon>cancel</mat-icon>
+                                        </button></div>
+                                </th>
+                                <th
+                                    [style]="Party?.BALQTY===0?'background-color:#d5ffd5':Party?.BALQTY<Party?.inwoard ?'background-color:#cde4ff':'background-color:#ffd8d8'">
+                                    <h5>{{ Party?.DcSeries}} - {{ Party?.Customer }} </h5>
+                                    <div class="row open-details mr-2" *ngIf="Party.visible==1">
+                                        <div class="col-md-4 p-3"><b>DC No:</b> {{ Party?.DcSeries }}</div>
+                                        <div class="col-md-4 p-3"><b>Date :</b> {{ Party?.DcDate | date :'dd/MM/yyyy' }}
+                                        </div>
+                                        <div class="col-md-4 "><b>View Details</b><button class="btn btn-sm"
+                                                matTooltip="View"
+                                                (click)="Edit(Party.Party_id, Party?.Customer,Party?.DcSeries ,Party?.DcDate )">
+                                                <mat-icon>visibility</mat-icon>
+                                            </button></div>
+                                    </div>
+
+
+                                </th>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <h4 *ngIf="this.DataList[0] == null">No Data Available</h4>
+            </div>
+
+            <!-- <div *ngIf="DataList[0] !=null" style="text-align: center" class="row">
+                <div class="col-10 d-flex flex-wrap py-2 ml-4 mr-3">
+                    <ul class="pagination justify-content-center">
+                        <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                            <a (click)="showPrevData()" [ngClass]="
+                  paginationService.showNoOfCurrentPage == 1
+                    ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1 active'
+                " style="
+                  margin-top: 5px;
+                  margin-right: 10px !important;
+                  cursor: pointer;
+                ">Prev</a>
+                        </li>
+                        <li *ngFor="let page of pageField; let i = index" class="page-item">
+                            <a (click)="showDataByPageNumber(page, i)" [ngClass]="
+                  pageNumber[i]
+                    ? 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1 active'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1'
+                " style="margin-right: 5px; margin-top: 5px; cursor: pointer">{{ page }}</a>
+                        </li>
+                        <li *ngIf="this.exactPageList > this.pageFieldLength" class="page-item">
+                            <a (click)="showNextData()" [ngClass]="
+                  paginationService.disabledNextBtn
+                    ? 'btn btn-icon btn-sm disable border-0 btn-light mr-2 my-1'
+                    : 'btn btn-icon btn-sm border-0 btn-light btn-hover-brand mr-2 my-1'
+                " style="
+                  margin-top: 5px;
+                  margin-left: 10px !important;
+                  cursor: pointer;
+                ">Next</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col py-4 text-align-left">
+                    Page {{ currentPage }} of {{ paginationService.exactPageList }}
+                </div> 
+            </div> -->
+
+        </div>
+    </div>
+</div>

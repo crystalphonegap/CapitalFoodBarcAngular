@@ -1,0 +1,9 @@
+{
+    "/Home/*": {
+    "target": "https://59.144.124.30:4545",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": { "^/Home": "" }
+    }
+}

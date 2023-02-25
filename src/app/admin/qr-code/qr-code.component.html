@@ -1,0 +1,62 @@
+<div class="p-2">
+    <div class="head-top card card-custom">
+
+        <h1>QR Code Scan</h1>
+        <hr class="hr-col">
+        <div class="row">
+            <div class="m-1 col-md-4">
+                <b>PartyName:</b> <label class="pl-2">{{PartyName}}</label>
+            </div>
+            <div class="m-1 col-md-4">
+                <b> DC:</b><label class="pl-2">{{DC}}</label>
+
+            </div>
+            <div class="m-1 col-md-3">
+                <b>Date:</b> <label class="pl-2">{{Date}}</label>
+
+            </div>
+
+        </div>
+        <div class="row det-bg-top">
+            <div class="m-1 col-md-3">
+                <b>Item Code: </b><label class="pl-2">{{ItemCode}}</label>
+            </div>
+            <div class="m-1 col-md-4">
+                <b>Product Description:</b> <label class="pl-2">{{ProductDescription}}</label>
+            </div>
+            <div class="m-1 col-md-2">
+                <b>Balance Quantity:</b><label class="pl-2">{{ BalanceQuantity}}</label>
+            </div>
+            <div class="m-1 col-md-2">
+                <b>Scanned Count:</b> <label class="pl-2">{{ScannedCount}}</label>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="  bg-secondary pt-2 pb-2 ">
+        <div class="form-group  ">
+            <div class="row">
+                <div class=" col-md-6 " *ngFor="let Emp of TestData ; index as i ">
+                    <div class="col-md-10" style="float: left;">
+                        <input class="form-control  " (keyup.enter)="ValueChanged($event.target.value,i)" id="{{'input'+i}}" class="form-control " (change)="ValueChanged($event.target.value,i)" [(ngModel)]="Emp.Barcode">
+                    </div>
+                    <div class="col-">
+                        <!-- <button class="btn btn-sm" matTooltip="Save">
+                    <mat-icon>save</mat-icon>
+                </button> -->
+                        <button class="btn btn-sm" matTooltip="Delete" (click)="Delete(i)">
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="m-4 pb-5">
+        <button (click)="Back()" class="btn btn-sm btn-primary">Back </button>
+    </div>
+</div>

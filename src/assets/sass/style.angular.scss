@@ -1,0 +1,296 @@
+    //
+    // Main Style
+    //
+    ////////////////////////////////////////////////////////////////
+    ///////////// DO NOT MODIFY BELOW INCLUDE ORDER ////////////////
+    ////////////////////////////////////////////////////////////////
+    // 1: Initialize
+    @import "init";
+    // 2: Bootstrap framework includes
+    @import "~bootstrap/scss/bootstrap";
+    @import "vendors/angular/material/angular-material";
+    @import "vendors/angular/material/include";
+    // 3: Components
+    @import "components/utilities",
+    "components/burger-icon",
+    "components/card",
+    "components/wizard",
+    "components/type",
+    "components/breadcrumb",
+    "components/nav",
+    "components/alert",
+    "components/buttons",
+    "components/code",
+    "components/dropdown",
+    "components/forms",
+    "components/grid",
+    "components/modal",
+    "components/progress",
+    "components/table",
+    "components/popover",
+    "components/tooltip",
+    "components/accordion",
+    "components/datatable",
+    "components/checkbox",
+    "components/radio",
+    "components/switch",
+    "components/option",
+    "components/dialog",
+    "components/strikethrough",
+    "components/separator",
+    "components/image-input",
+    "components/label",
+    "components/loader",
+    "components/symbol",
+    "components/pulse",
+    "components/page-loader",
+    "components/quick-search",
+    "components/scrolltop",
+    "components/spinner",
+    "components/sticky-toolbar",
+    "components/svg-icon",
+    "components/svg",
+    "components/timeline",
+    "components/timeline-2",
+    "components/timeline-3",
+    "components/timeline-4",
+    "components/timeline-5",
+    "components/timeline-6",
+    "components/overlay",
+    "components/wave",
+    "components/list",
+    "components/bullet",
+    "components/navi",
+    "components/ribbon",
+    "components/offcanvas",
+    "components/toggle";
+    // 4: Plugins
+    @import "vendors/plugins/formvalidation",
+    "vendors/plugins/dropzone",
+    "vendors/plugins/perfect-scrollbar",
+    "vendors/plugins/prismjs",
+    "vendors/plugins/apexcharts";
+    // 5: Layout
+    @import "layout/init";
+    ////////////////////////////////////////////////////////////////
+    ///////////// DO NOT MODIFY ABOVE INCLUDE ORDER ////////////////
+    ////////////////////////////////////////////////////////////////
+    // th,
+    // td {
+    //     padding: 5px !important;
+    //     vertical-align: middle !important;
+    // }
+    .btn.btn-light:hover:not(.btn-text):not(:disabled):not(.disabled),
+    .btn.btn-light:focus:not(.btn-text),
+    .btn.btn-light.focus:not(.btn-text) {
+        color: #fbfdff;
+        background-color: #3699ff;
+    }
+    
+    .mat-tab-labels {
+        background: #dbf1fe;
+        //background: linear-gradient(to right, #4b6cb7, #182848);
+    }
+    
+    .mat-tab-label,
+    .mat-tab-link {
+        color: #1a1a27;
+        //color: #fff;
+        //color: linear-gradient(to right, #ffc837, #ff8008);
+    }
+    
+    // .mat-tab-label, .mat-tab-link {
+    //     color: #fff;
+    // }
+    .mat-tab-group.mat-primary .mat-ink-bar,
+    .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+        //background-color: #1a1a27;
+        background-color: #50a7ff;
+        height: 4px;
+    }
+    
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+        background: #1a1a27;
+    }
+    
+    .mat-tab-header-pagination-chevron {
+        border-color: #fff;
+    }
+    
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+        padding-bottom: 2px;
+    }
+    
+    .mat-tab-header-pagination-disabled .mat-tab-header-pagination-chevron {
+        border-color: #ffF;
+    }
+    
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+        background-color: rgba(179, 178, 178, 0.116);
+        padding: 1px 1px 0 1px;
+    }
+    
+    .table thead tr {
+        background: #1e1e2d;
+        color: #fff;
+    }
+    
+    .SelectRow {
+        background-color: #8cbfff33;
+    }
+    
+    .mat-icon {
+        color: #1e1e2d;
+    }
+    
+    .mat-icon:hover {
+        color: #2791fd;
+    }
+    
+    .material-icons {
+        color: #1e1e2d;
+    }
+    
+    .material-icons:hover {
+        color: #2791fd;
+    }
+    
+    .btn.btn-light-primary {
+        color: #ffffff;
+        background-color: #50a7ff;
+        border-color: transparent;
+    }
+    
+    // mat-form-field.mat-form-field {
+    //     font-size: 14px;
+    // }
+    .mat-form-field-label {
+        font-size: 15px!important;
+        color: #3e3e3e !important;
+    }
+    
+    .mat-form-field-appearance-legacy .mat-form-field-infix {
+        padding: 1em 0;
+    }
+    
+    // // scroll bar style css strat  //
+    // /* width */
+    //  ::-webkit-scrollbar {
+    //     width: 12px;
+    // }
+    // /* Track */
+    //  ::-webkit-scrollbar-track {
+    //     box-shadow: inset 0 0 5px #f2f2f2;
+    //     border-radius: 2px;
+    // }
+    // /* Handle */
+    //  ::-webkit-scrollbar-thumb {
+    //     background: #00001a;
+    //     border-radius: 2px;
+    // }
+    // /* Handle on hover */
+    //  ::-webkit-scrollbar-thumb:hover {
+    //     background: #FFCF0A;
+    // }
+    // /* Up */
+    //  ::-webkit-scrollbar-button:single-button:vertical:decrement {
+    //     border-width: 0 8px 8px 8px;
+    //     border-color: transparent transparent #555555 transparent;
+    // }
+    //  ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    //     border-color: transparent transparent #ff9900 transparent;
+    // }
+    // /* Buttons */
+    //  ::-webkit-scrollbar-button:single-button {
+    //     background-color: #ffffff;
+    //     display: block;
+    //     border-style: solid;
+    //     height: 13px;
+    //     width: 16px;
+    // }
+    // /* Down */
+    //  ::-webkit-scrollbar-button:single-button:vertical:increment {
+    //     border-width: 8px 8px 0 8px;
+    //     border-color: #555555 transparent transparent transparent;
+    // }
+    //  ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+    //     border-color: #ff9900 transparent transparent transparent;
+    // }
+    // // scroll bar style css end  //
+    .angular-editor-toolbar {
+        font: 105 1.8rem/16px Roboto, Arial, sans-serif;
+        background-color: #f5f5f5;
+        padding: 0.2rem;
+        border: 1px solid #ddd;
+    }
+    
+    .header-mobile-fixed .wrapper {
+        padding-top: 0px;
+    }
+    
+    // .mat-form-field-appearance-fill .mat-form-field-flex {
+    //     border-radius: 4px 4px 0 0;
+    //     padding: .75em .75em 0 .75em;
+    // }
+    .footer-fixed .footer {
+        position: fixed;
+        height: 20px;
+        z-index: 97;
+        box-shadow: 0px 0px 28px 0px rgb(82 63 105 / 13%);
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+    
+    .header-fixed.subheader-fixed .subheader {
+        height: 62px;
+        background: #1a1a27;
+        border-top: 1px solid #1a1a27;
+    }
+    
+    .breadcrumb-item+.breadcrumb-item::before {
+        color: #ffdd36;
+    }
+    
+    .card-header {
+        padding: 1rem 1rem;
+    }
+    
+    .card-title {
+        margin-bottom: 1rem;
+    }
+    
+    .btn.btn-primary:hover:not(.btn-text):not(:disabled):not(.disabled),
+    .btn.btn-primary:focus:not(.btn-text),
+    .btn.btn-primary.focus:not(.btn-text) {
+        color: #ffffff;
+        background-color: #1c2d43;
+        border-color: #1e3149;
+    }
+    
+    .btn.btn-hover-primary:hover:not(.btn-text):not(:disabled):not(.disabled),
+    .btn.btn-hover-primary:focus:not(.btn-text),
+    .btn.btn-hover-primary.focus:not(.btn-text) {
+        color: #FFFFFF !important;
+        background-color: #1e1e2d !important;
+        border-color: #1e1e2d !important;
+    }
+    
+    .table th,
+    .table td {
+        vertical-align: middle;
+        font-weight: 400 !important;
+        font-size: 13px !important;
+    }
+    
+    .angular-editor-toolbar {
+        font: 100 20px/15px Roboto, Arial, sans-serif !important;
+        background-color: #f5f5f5;
+        padding: 0.2rem;
+        border: 1px solid #ddd;
+    }
+    
+    .angular-editor-toolbar .angular-editor-toolbar-set .select-font {
+        //display: inline-block;
+        width: 140px;
+    }
